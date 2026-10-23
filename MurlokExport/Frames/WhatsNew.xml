@@ -1,0 +1,82 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\..\..\..\..\..\WoW\Data\Interface\AddOns\Blizzard_SharedXML\UI.xsd">
+	<Script file="WhatsNew.lua"/>
+
+	<Frame name="MurlokExportWhatsNew" inherits="PortraitFrameTemplate" mixin="PortraitFrameMixin, MurlokExportWhatsNewMixin" parent="UIParent" frameStrata="DIALOG" toplevel="true" movable="true" enableMouse="true" hidden="true">
+		<Size x="440" y="300"/>
+		<Anchors>
+			<Anchor point="CENTER" x="0" y="0"/>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture parentKey="Image" hidden="true"/>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString parentKey="Heading" inherits="GameFontNormalLarge" justifyH="LEFT">
+					<Size x="392"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="24" y="-70"/>
+					</Anchors>
+				</FontString>
+				<FontString parentKey="Notes" inherits="GameFontHighlight" justifyH="LEFT" justifyV="TOP">
+					<Size x="392"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.Heading" relativePoint="BOTTOMLEFT" x="0" y="-10"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame parentKey="Gorloc" hidden="true">
+				<Size x="392" y="80"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.Notes" relativePoint="BOTTOMLEFT" x="0" y="-14"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString parentKey="Text" inherits="GameFontHighlight" justifyH="LEFT" justifyV="TOP">
+							<Size x="392"/>
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+							</Anchors>
+						</FontString>
+						<FontString parentKey="Hint" inherits="GameFontDisableSmall" justifyH="LEFT" hidden="true">
+							<Anchors>
+								<Anchor point="BOTTOMLEFT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button parentKey="Copy" inherits="UIPanelButtonTemplate">
+						<Size x="90" y="22"/>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeKey="$parent.Text" relativePoint="BOTTOMRIGHT" x="0" y="-8"/>
+						</Anchors>
+					</Button>
+					<EditBox parentKey="Link" inherits="InputBoxTemplate" autoFocus="false">
+						<Size y="22"/>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeKey="$parent.Text" relativePoint="BOTTOMLEFT" x="6" y="-8"/>
+							<Anchor point="RIGHT" relativeKey="$parent.Copy" relativePoint="LEFT" x="-10" y="0"/>
+						</Anchors>
+					</EditBox>
+				</Frames>
+			</Frame>
+			<Button parentKey="Okay" inherits="UIPanelButtonTemplate" text="OKAY">
+				<Size x="100" y="22"/>
+				<Anchors>
+					<Anchor point="BOTTOM" x="0" y="16"/>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad method="OnLoad"/>
+			<OnDragStart>
+				self:StartMoving()
+			</OnDragStart>
+			<OnDragStop>
+				self:StopMovingOrSizing()
+			</OnDragStop>
+		</Scripts>
+	</Frame>
+</Ui>

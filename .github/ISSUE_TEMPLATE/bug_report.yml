@@ -1,0 +1,44 @@
+name: Bug report
+description: Something in the addon is broken, shows an error, or looks wrong.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! Please update MurlokExport to the latest version first: the data is rebuilt every day.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what you saw instead.
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: Lua error
+      description: If you got an error (for example from BugSack or with /console scriptErrors 1), paste the full text here.
+      render: text
+  - type: input
+    id: version
+    attributes:
+      label: MurlokExport version
+      description: Shown in the addon list, or the date at the top of the MurlokExport window.
+      placeholder: "1.7.3 / v20261021.000512"
+    validations:
+      required: true
+  - type: input
+    id: spec
+    attributes:
+      label: Class, spec, hero talent and mode
+      placeholder: "Holy Paladin, Lightsmith, Mythic+"
+  - type: input
+    id: locale
+    attributes:
+      label: Game language
+      placeholder: "enUS"
+  - type: textarea
+    id: addons
+    attributes:
+      label: Other addons
+      description: Especially Talent Loadout Ex, Gorloc Consumables, or anything that changes the talent or Auction House windows.

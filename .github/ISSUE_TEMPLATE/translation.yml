@@ -1,0 +1,17 @@
+name: Translation
+description: A missing or wrong translation.
+labels: [translation]
+body:
+  - type: input
+    id: locale
+    attributes:
+      label: Language
+      placeholder: "deDE"
+    validations:
+      required: true
+  - type: textarea
+    id: strings
+    attributes:
+      label: Which text, and what should it say?
+    validations:
+      required: true
