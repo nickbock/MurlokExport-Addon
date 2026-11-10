@@ -23,6 +23,15 @@
     </Layers>
     <Frames>
       <CheckButton parentKey="CompactViewCheckButton" inherits="InterfaceOptionsCheckButtonTemplate" mixin="OptionsPanelTemplateMixin">
+        <Layers>
+          <Layer level="ARTWORK">
+            <FontString parentKey="Label" inherits="GameFontHighlight" justifyH="LEFT">
+              <Anchors>
+                <Anchor point="LEFT" relativePoint="RIGHT" x="2" y="1" />
+              </Anchors>
+            </FontString>
+          </Layer>
+        </Layers>
         <Anchors>
           <Anchor point="TOPLEFT" relativeKey="$parent.SubText" relativePoint="BOTTOMLEFT" x="-2" y="-8" />
         </Anchors>
@@ -32,6 +41,15 @@
         </Scripts>
       </CheckButton>
       <CheckButton parentKey="ShowOnlyCurrentClassCheckButton" inherits="InterfaceOptionsCheckButtonTemplate" mixin="OptionsPanelTemplateMixin">
+        <Layers>
+          <Layer level="ARTWORK">
+            <FontString parentKey="Label" inherits="GameFontHighlight" justifyH="LEFT">
+              <Anchors>
+                <Anchor point="LEFT" relativePoint="RIGHT" x="2" y="1" />
+              </Anchors>
+            </FontString>
+          </Layer>
+        </Layers>
         <Anchors>
           <Anchor point="TOPLEFT" relativeKey="$parent.CompactViewCheckButton" relativePoint="BOTTOMLEFT" x="-2" y="-8" />
         </Anchors>
@@ -41,6 +59,15 @@
         </Scripts>
       </CheckButton>
       <CheckButton parentKey="HideMinimapButtonCheckButton" inherits="InterfaceOptionsCheckButtonTemplate" mixin="OptionsPanelTemplateMixin">
+        <Layers>
+          <Layer level="ARTWORK">
+            <FontString parentKey="Label" inherits="GameFontHighlight" justifyH="LEFT">
+              <Anchors>
+                <Anchor point="LEFT" relativePoint="RIGHT" x="2" y="1" />
+              </Anchors>
+            </FontString>
+          </Layer>
+        </Layers>
         <Anchors>
           <Anchor point="TOPLEFT" relativeKey="$parent.ShowOnlyCurrentClassCheckButton" relativePoint="BOTTOMLEFT" x="-2" y="-8" />
         </Anchors>
