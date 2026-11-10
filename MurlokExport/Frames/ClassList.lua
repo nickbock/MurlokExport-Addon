@@ -142,6 +142,8 @@ function ClassListFrameMixin:OnShow()
 	local classId, specId, heroId = core:GetPlayerClassSpecHero()
 	if self.activeClassId == nil and self.activeSpecId == nil and self.activeHero == nil then
 		local button = self.ClassScrollBox:FindFrameByPredicate(function(frame, edata) return edata.classId == classId and edata.specId == specId and (heroId == nil or edata.heroId == heroId) end)
+		-- A hero tree no one in the sample plays is not in the list: open the spec's first one.
+		button = button or self.ClassScrollBox:FindFrameByPredicate(function(frame, edata) return edata.classId == classId and edata.specId == specId end)
 		if button and not UIMurlokExport.TraitsTreeFrame:GetPreviewMode() then
 			button:OnClick("LeftButton")
 		end
@@ -165,8 +167,9 @@ function ClassListFrameMixin:UpdateClassList(content)
 				end
 			end
 		end
-		self.ClassScrollBox:SetDataProvider(newDataProvider, ScrollBoxConstants.RetainScrollPosition)
 	end
+	-- A mode without data shows an empty list, not the previous mode's list.
+	self.ClassScrollBox:SetDataProvider(newDataProvider, ScrollBoxConstants.RetainScrollPosition)
 end
 
 function ClassListFrameMixin:InsertSpec(index, newDataProvider, class, config)
