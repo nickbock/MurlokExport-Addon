@@ -108,6 +108,15 @@ ClassConfig = {
 	}
 }
 
+-- A hero tree's share of the specialization's top players, as a whole percentage.
+-- A tree a few players run still shows that it is played.
+local function FormatShare(share)
+	if share > 0 and share < 0.5 then
+		return "<1%"
+	end
+	return string.format("%d%%", math.floor(share + 0.5))
+end
+
 ClassListFrameMixin = {}
 function ClassListFrameMixin:OnLoad()
 	local tabConfig = {}
@@ -181,6 +190,7 @@ function ClassListFrameMixin:InsertSpec(index, newDataProvider, class, config)
 				hero = subTreeInfo.name,
 				hero_atlas = subTreeInfo.iconElementID,
 				count = stats["count"],
+				share = stats["share"],
 				stats = stats
 			})
 		end
@@ -197,6 +207,10 @@ function ClassListFrameMixin:InitClassButton(button, elementData)
 	button.hero_atlas = elementData.hero_atlas
 	button.heroIcon:SetAtlas(elementData.hero_atlas)
 	button.count:SetText(elementData.count)
+	button.share:SetText(elementData.share and FormatShare(elementData.share) or "")
+	button.share:SetShown(elementData.share ~= nil)
+	button.shareValue = elementData.share
+	button.countValue = elementData.count
 	button.hilightFrame.ActiveTexture:Hide()
 	button.classId = elementData.classId
 	button.specId = elementData.specId
@@ -295,6 +309,23 @@ function ClassListItemMixin:OnUpdate()
 	local active = self.classId and self.specId and self.hero and frame.activeSpecId == self.specId and frame.activeClassId == self.classId and frame.activeHero == self.hero
 	self.hilightFrame.ActiveTexture:SetShown(active)
 	self.selectedTexture:SetShown(active)
+end
+
+-- Explains the two numbers when the data has a share: how popular the tree is,
+-- and how many players its builds, talents and gear come from.
+function ClassListItemMixin:OnEnter()
+	if not self.shareValue then
+		return
+	end
+	GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+	GameTooltip:SetText(self.hero or "")
+	GameTooltip:AddLine(string.format(MURLOKEXPORT_HERO_SHARE, FormatShare(self.shareValue)), 1, 1, 1, true)
+	GameTooltip:AddLine(string.format(MURLOKEXPORT_HERO_SAMPLE, self.countValue or 0), 1, 1, 1, true)
+	GameTooltip:Show()
+end
+
+function ClassListItemMixin:OnLeave()
+	GameTooltip_Hide()
 end
 
 function ClassListItemMixin:OnClick(button)

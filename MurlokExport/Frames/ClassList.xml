@@ -39,6 +39,12 @@
 						<Anchor point="CENTER" relativeKey="$parent.countBG" x="1" y="-1"/>
 					</Anchors>
 				</FontString>
+				<!-- The hero tree's share of the spec's top 100, when the data has one (Gorloc.io's m+). -->
+				<FontString inherits="GameFontHighlight" justifyH="CENTER" parentKey="share" hidden="true">
+					<Anchors>
+						<Anchor point="CENTER" relativeKey="$parent.heroIcon" x="0" y="0"/>
+					</Anchors>
+				</FontString>
 			</Layer>
 			<Layer level="OVERLAY">
 				<Texture atlas="PetList-ButtonSelect" parentKey="selectedTexture" hidden="true"/>
@@ -88,6 +94,8 @@
 			</OnLoad>
 			<OnUpdate method="OnUpdate"/>
 			<OnClick method="OnClick"/>
+			<OnEnter method="OnEnter"/>
+			<OnLeave method="OnLeave"/>
 		</Scripts>
 	</Button>
 

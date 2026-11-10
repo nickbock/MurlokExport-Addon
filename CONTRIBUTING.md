@@ -31,7 +31,7 @@ Strings live in `MurlokExport/Locales/<locale>.lua`, with `enUS.lua` as the refe
 
 ```
 MurlokExport["m+"][class][spec][hero] = {
-  id, count, rating,
+  id, count, share, rating,
   secondary_stats = { haste|crit|mastery|versatility = {percent, value} },  -- sorted desc
   minor_stats     = { leech|speed|avoidance          = {percent, value} },
   talents = { <up to 5 export strings> },
@@ -43,7 +43,9 @@ MurlokExport["m+"][class][spec][hero] = {
 }
 ```
 
-The top-level `count` is how many of the **specialization's** top 50 play this hero tree. Every nested `count` is how many of **this hero's** own top 50 use it, so a nested count can exceed the top-level one. `rank` is the index of the highest-rated player using it, `0` being #1; it drives `core:getRankColor` in `MurlokExport/Core/Core.lua`. Only the top 5 per slot per category are kept.
+From murlok.io (the PvP modes), the top-level `count` is how many of the **specialization's** top 50 play this hero tree. Every nested `count` is how many of **this hero's** own top 50 use it, so a nested count can exceed the top-level one.
+
+From Gorloc.io (`m+`), the top-level `count` is the size of the hero tree's own sample (its top 50, or fewer if not that many play it), so a nested count never exceeds it, and `share` is the hero tree's percentage of the specialization's top 100 (one decimal, 0 when none of them play it). The class list shows the share over the hero icon and explains both numbers in a tooltip. `share` is missing in murlok.io data; the list then shows only the count. `rank` is the index of the highest-rated player using it, `0` being #1; it drives `core:getRankColor` in `MurlokExport/Core/Core.lua`. Only the top 5 per slot per category are kept.
 
 ## Other addons that depend on this one
 
