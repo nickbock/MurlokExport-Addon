@@ -26,8 +26,19 @@ local SlotNames = {
 	["gems"] = "MURLOKEXPORT_CONSUMABLES_GEMS"
 }
 
--- A list of one spec's recommendations, shown in the Equipment panel and at the Auction House.
--- The Auction House sets itemsOnly (spells cannot be bought) and showCounts (how many you have).
+-- Searches the Auction House for an item by name, the way its own search bar does, across every
+-- category. Does nothing when the Auction House is not open.
+local function SearchAuctionHouse(name)
+	if not (name and AuctionHouseFrame and AuctionHouseFrame:IsVisible()) then
+		return
+	end
+	AuctionHouseFrame:GetCategoriesList():SetSelectedCategory(nil)
+	AuctionHouseFrame.SearchBar:SetSearchText(name)
+	AuctionHouseFrame.SearchBar:StartSearch()
+end
+
+-- A list of one spec's recommendations, shown in the Equipment panel. The panel at the Auction
+-- House was here up to 1.7.3 and is now part of Gorloc Consumables itself.
 ConsumablesListFrameMixin = {}
 function ConsumablesListFrameMixin:OnLoad()
 	local view = CreateScrollBoxListLinearView()
@@ -68,14 +79,11 @@ function ConsumablesListFrameMixin:Refresh(api)
 				-- the header goes in with the group's first row, so a group with no rows has none
 				local header = {header = _G[GroupNames[layout.group]]}
 				local function insert(ref, slot, option)
-					if self.itemsOnly and ref.type ~= "item" then
-						return
-					end
 					if header then
 						dataProvider:Insert(header)
 						header = nil
 					end
-					dataProvider:Insert({ref = ref, slot = slot, note = self:FormatNote(api, ref), option = option, showCount = self.showCounts})
+					dataProvider:Insert({ref = ref, slot = slot, note = self:FormatNote(api, ref), option = option})
 				end
 				for _, slot in ipairs(layout.slots) do
 					local entry = SlotNames[slot] and slots[slot]
@@ -118,8 +126,6 @@ function ConsumablesListRowMixin:Init(elementData)
 	self.Name:SetPoint("LEFT", self.Icon, "RIGHT", 8, offset)
 	self.Note:SetText(elementData.note)
 	self.Note:SetShown(elementData.note ~= nil)
-	self.showCount = elementData.showCount
-	self:UpdateCount()
 
 	if self.ref.type == "spell" then
 		self.Icon:SetTexture(C_Spell.GetSpellTexture(self.ref.id))
@@ -137,13 +143,6 @@ function ConsumablesListRowMixin:Init(elementData)
 			self.Name:SetTextColor((color and color.color or HIGHLIGHT_FONT_COLOR):GetRGB())
 		end)
 	end
-end
-
--- How many the player has, bags and banks: shown on the icon, and not at all when none.
-function ConsumablesListRowMixin:UpdateCount()
-	local count = self.showCount and self.ref.type == "item" and C_Item.GetItemCount(self.ref.id, true, false, true, true) or 0
-	self.Count:SetText(count)
-	self.Count:SetShown(count > 0)
 end
 
 function ConsumablesListRowMixin:GetLink()
@@ -176,6 +175,6 @@ function ConsumablesListRowMixin:OnClick()
 			HandleModifiedItemClick(link)
 		end
 	elseif self.ref.type == "item" then
-		core:SearchAuctionHouse(C_Item.GetItemNameByID(self.ref.id))
+		SearchAuctionHouse(C_Item.GetItemNameByID(self.ref.id))
 	end
 end

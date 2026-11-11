@@ -1,3 +1,6 @@
+### 1.7.4
+- The Consumables panel at the Auction House is now part of Gorloc Consumables itself (version 1.1.0 or newer), so it also works without MurlokExport. Update Gorloc Consumables to keep the panel. The Consumables tab in MurlokExport is unchanged.
+
 ### 1.7.3
 - Updated for patch 12.1.5
 - Fixed an error at login, and the Consumables panel missing from the Auction House, when another addon loads the Auction House early

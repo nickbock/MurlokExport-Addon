@@ -1,5 +1,5 @@
 ## Interface: 120105
-## Version: 1.7.3
+## Version: 1.7.4
 ## Title: |cff00ccffMurlok|rExport
 ## IconTexture: Interface/AddOns/MurlokExport/Artwork/MurlokExport.tga
 ## Notes: Simple addon to display Murlok.io rated Mythic+ or PvP data
@@ -36,7 +36,6 @@ Frames\ConsumablesList.xml
 Frames\EquipmentsList.xml
 Core\Core.xml
 Frames\WhatsNew.xml
-Frames\AuctionHouse.xml
 
 Core\MinimapButton.lua
 Core\Init.lua
