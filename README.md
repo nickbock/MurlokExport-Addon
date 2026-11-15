@@ -1,4 +1,4 @@
-**<span style="color:#f1c40f">New:</span> Consumables.** The recommended flasks, potions, food, weapon buffs, enchants and gems for each specialization, and an Auction House panel to buy them (with the free Gorloc Consumables AddOn).
+**<span style="color:#f1c40f">New:</span> Consumables.** The recommended flasks, potions, food, weapon buffs, enchants and gems for each specialization, with the free Gorloc Consumables AddOn, which also adds an Auction House panel to buy them.
 
 ***
 
@@ -69,7 +69,7 @@ It shows an in-game summary for each class/specialization/hero combination in th
     Where a guide says when to use something, it is shown below the name, e.g. "Raid" or "Mythic+". Alternatives are shown dimmed below the recommended item. SHIFT + left click links an item in chat.  
     The date at the bottom is when the Wowhead guide last changed its recommendations; Gorloc Consumables checks the guides weekly.
     
-*   **<span style="color:#f1c40f">New:</span> Auction House panel.** When you open the Auction House, a panel next to it lists what your current specialization should buy, with on each icon how many you already have. Click an item to search for it at the Auction House. Close the panel with its X; the MurlokExport tab on the right edge of the Auction House brings it back.
+*   **<span style="color:#f1c40f">New:</span> Auction House panel.** This panel is part of Gorloc Consumables (1.1.0 or newer). When you open the Auction House, a panel next to it lists what your current specialization should buy, with on each icon how many you already have. Click an item to search for it at the Auction House. Close the panel with its X; the tab on the right edge of the Auction House brings it back.
     
     ![consumables panel](https://media.forgecdn.net/attachments/2017/249/consumables-and-enchants-panel-png.png)
     
